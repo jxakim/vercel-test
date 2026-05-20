@@ -1,5 +1,4 @@
 <script lang="ts">
-	import logo from '$lib/assets/favicon.png';
 	import longLogo from '$lib/assets/Kontrast-long.png';
 
 	let mobileMenuOpen = $state(false);
@@ -12,16 +11,16 @@
 		<div class="mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center px-4 py-3 sm:px-6">
 			<a
 				href="/"
-				class="hidden h-10 items-center justify-self-start transition-opacity duration-200 hover:opacity-90 sm:inline-flex"
+				class="col-start-1 hidden h-10 items-center justify-self-start transition-opacity duration-200 hover:opacity-90 sm:inline-flex"
 			>
 				<img src={longLogo} alt="Kontrast Web Logo" class="h-8 w-auto" />
 			</a>
 
 			<a
 				href="/"
-				class="inline-flex items-center transition-opacity duration-200 hover:opacity-90 sm:hidden"
+				class="col-start-1 inline-flex items-center justify-self-start transition-opacity duration-200 hover:opacity-90 sm:hidden"
 			>
-				<img src={logo} alt="Kontrast Web Logo" class="brand-favicon w-14 sm:w-16" />
+				<img src={longLogo} alt="Kontrast Web Logo" class="h-7 w-auto" />
 			</a>
 
 			<button
@@ -50,7 +49,7 @@
 		</div>
 
 		{#if mobileMenuOpen}
-			<ul id="mobile-nav" class="fade-in mx-4 mt-3 flex flex-col gap-2 p-3 text-sm font-semibold uppercase tracking-[0.08em] text-slate-300 sm:hidden" style="--fade-delay: 120ms">
+			<ul id="mobile-nav" class="fade-in mr-4 ml-auto mt-3 flex w-fit flex-col items-end gap-2 p-3 text-right text-sm font-semibold uppercase tracking-[0.08em] text-slate-300 sm:hidden" style="--fade-delay: 120ms">
 				<li><a href="/" class="mobile-nav-link">Home</a></li>
 				<li><a href="/" class="mobile-nav-link">Portfolio</a></li>
 				<li><a href="/" class="mobile-nav-link">About</a></li>
@@ -59,7 +58,7 @@
 		{/if}
 	</nav>
 
-	<section class="fade-in mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-6 py-24 text-center sm:gap-12 sm:px-10 md:py-28" style="--fade-delay: 230ms">
+	<section class="fade-in mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-6 py-10 text-center sm:gap-12 sm:px-10 md:py-20" style="--fade-delay: 230ms">
 		<p class="fade-in text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80" style="--fade-delay: 250ms">Web solutions</p>
 		<h1 class="fade-in text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-6xl" style="--fade-delay: 280ms">
 			Welcome to <span class="kontrast-word">Kontrast</span>
