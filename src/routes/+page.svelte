@@ -9,7 +9,7 @@
 >
 	<div class="interactive-cut-bg" aria-hidden="true"></div>
 
-	<nav class="fade-in relative z-10 px-4 pt-6 sm:px-6" style="--fade-delay: 60ms">
+	<nav class="fade-in relative z-10 px-4 pt-6 sm:px-6" class:mobile-nav-open={mobileMenuOpen} style="--fade-delay: 60ms">
 		<div class="mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center px-4 py-3 sm:px-6">
 			<a
 				href="/"
@@ -27,19 +27,16 @@
 
 			<button
 				type="button"
-				class="col-start-3 inline-flex justify-self-end rounded-md p-2 text-slate-300 transition hover:bg-slate-800 hover:text-white sm:hidden"
+				class="menu-toggle col-start-3 inline-flex justify-self-end sm:hidden"
+				class:menu-toggle-open={mobileMenuOpen}
 				onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
 				aria-expanded={mobileMenuOpen}
 				aria-controls="mobile-nav"
 			>
 				<span class="sr-only">Toggle navigation menu</span>
-				<svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					{#if mobileMenuOpen}
-						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-					{:else}
-						<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-					{/if}
-				</svg>
+				<span class="menu-toggle-line"></span>
+				<span class="menu-toggle-line"></span>
+				<span class="menu-toggle-line"></span>
 			</button>
 
 			<ul class="col-start-2 hidden h-10 items-center gap-7 text-sm font-medium text-slate-300 sm:flex lg:gap-10">
@@ -51,7 +48,7 @@
 		</div>
 
 		{#if mobileMenuOpen}
-			<ul id="mobile-nav" class="fade-in mr-4 ml-auto mt-3 flex w-fit min-w-40 flex-col items-end gap-1 p-2 text-right text-sm font-medium text-slate-300 sm:hidden" style="--fade-delay: 100ms">
+			<ul id="mobile-nav" class="mobile-menu-panel fade-in fixed inset-x-0 top-[4.85rem] z-[80] mx-3 flex flex-col gap-1 p-2 text-left text-sm font-medium text-slate-200 sm:hidden" style="--fade-delay: 80ms">
 				<li><a href="/" class="mobile-nav-link">Home</a></li>
 				<li><a href="/" class="mobile-nav-link">Portfolio</a></li>
 				<li><a href="/" class="mobile-nav-link">About</a></li>
