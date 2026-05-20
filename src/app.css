@@ -10,6 +10,16 @@ body {
 	background-color: #0f172a;
 	position: relative;
 	overflow-x: hidden;
+	user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-webkit-touch-callout: none;
+}
+
+img {
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
 }
 
 body::before,
