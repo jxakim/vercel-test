@@ -8,21 +8,25 @@
 <main
 	class="min-h-screen text-slate-100"
 >
-	<nav class="fade-in pt-10" style="--fade-delay: 40ms">
-		<div class="flex w-full items-center px-6">
+	<nav class="fade-in px-4 pt-6 sm:px-6" style="--fade-delay: 70ms">
+		<div class="mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center px-4 py-3 sm:px-6">
 			<a
 				href="/"
-				class="fade-in inline-flex transition duration-200 hover:-translate-y-0.5 hover:scale-[1.02]"
-				style="--fade-delay: 110ms"
+				class="hidden h-10 items-center justify-self-start transition-opacity duration-200 hover:opacity-90 sm:inline-flex"
 			>
-				<img src={longLogo} alt="Kontrast Web Logo" class="w-32 sm:hidden" />
-				<img src={logo} alt="Kontrast Web Logo" class="hidden w-16 sm:block" />
+				<img src={longLogo} alt="Kontrast Web Logo" class="h-8 w-auto" />
+			</a>
+
+			<a
+				href="/"
+				class="inline-flex items-center transition-opacity duration-200 hover:opacity-90 sm:hidden"
+			>
+				<img src={logo} alt="Kontrast Web Logo" class="brand-favicon w-14 sm:w-16" />
 			</a>
 
 			<button
 				type="button"
-				class="fade-in ml-auto inline-flex items-center justify-center rounded-md p-2 text-slate-300 transition hover:bg-slate-800 hover:text-white sm:hidden"
-				style="--fade-delay: 140ms"
+				class="col-start-3 inline-flex justify-self-end rounded-md p-2 text-slate-300 transition hover:bg-slate-800 hover:text-white sm:hidden"
 				onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
 				aria-expanded={mobileMenuOpen}
 				aria-controls="mobile-nav"
@@ -37,28 +41,29 @@
 				</svg>
 			</button>
 
-			<ul class="fade-in ml-6 hidden w-fit items-center gap-5 text-md font-medium text-slate-300 sm:flex sm:gap-10 sm:text-md" style="--fade-delay: 170ms">
-				<li><a href="/" class="transition hover:text-white">Home</a></li>
-				<li><a href="/" class="transition hover:text-white">Portfolio</a></li>
-				<li><a href="/" class="transition hover:text-white">About</a></li>
-				<li><a href="/" class="transition hover:text-white">Contact</a></li>
+			<ul class="col-start-2 hidden h-10 items-center gap-7 text-sm font-semibold uppercase tracking-[0.12em] text-slate-300 sm:flex lg:gap-10">
+				<li><a href="/" class="nav-link inline-flex h-10 items-center">Home</a></li>
+				<li><a href="/" class="nav-link inline-flex h-10 items-center">Portfolio</a></li>
+				<li><a href="/" class="nav-link inline-flex h-10 items-center">About</a></li>
+				<li><a href="/" class="nav-link inline-flex h-10 items-center">Contact</a></li>
 			</ul>
 		</div>
 
 		{#if mobileMenuOpen}
-			<ul id="mobile-nav" class="fade-in mt-4 flex flex-col gap-3 px-6 text-base font-medium text-slate-300 sm:hidden" style="--fade-delay: 200ms">
-				<li><a href="/" class="block rounded-md px-2 py-1 transition hover:bg-slate-800 hover:text-white">Home</a></li>
-				<li><a href="/" class="block rounded-md px-2 py-1 transition hover:bg-slate-800 hover:text-white">Portfolio</a></li>
-				<li><a href="/" class="block rounded-md px-2 py-1 transition hover:bg-slate-800 hover:text-white">About</a></li>
-				<li><a href="/" class="block rounded-md px-2 py-1 transition hover:bg-slate-800 hover:text-white">Contact</a></li>
+			<ul id="mobile-nav" class="fade-in mx-4 mt-3 flex flex-col gap-2 p-3 text-sm font-semibold uppercase tracking-[0.08em] text-slate-300 sm:hidden" style="--fade-delay: 120ms">
+				<li><a href="/" class="mobile-nav-link">Home</a></li>
+				<li><a href="/" class="mobile-nav-link">Portfolio</a></li>
+				<li><a href="/" class="mobile-nav-link">About</a></li>
+				<li><a href="/" class="mobile-nav-link">Contact</a></li>
 			</ul>
 		{/if}
 	</nav>
 
-	<section class="fade-in mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-6 py-20 text-center sm:gap-10 sm:px-20" style="--fade-delay: 230ms">
-		<h1 class="fade-in text-2xl font-bold sm:text-2xl md:text-4xl" style="--fade-delay: 280ms">
+	<section class="fade-in mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-6 py-24 text-center sm:gap-12 sm:px-10 md:py-28" style="--fade-delay: 230ms">
+		<p class="fade-in text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80" style="--fade-delay: 250ms">Web solutions</p>
+		<h1 class="fade-in text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-6xl" style="--fade-delay: 280ms">
 			Welcome to <span class="kontrast-word">Kontrast</span>
 		</h1>
-		<p class="fade-in text-lg text-slate-400 sm:text-xl md:text-xl" style="--fade-delay: 330ms">Kontrast is under construction. Please check back later.</p>
+		<p class="fade-in max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl" style="--fade-delay: 330ms">Kontrast is under construction. Please check back later.</p>
 	</section>
 </main>
