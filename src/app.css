@@ -1,5 +1,11 @@
 @import 'tailwindcss';
 
+:root {
+	--motion-fast: 180ms;
+	--motion-base: 520ms;
+	--ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 html,
 body {
 	min-height: 100%;
@@ -33,11 +39,11 @@ body::after {
 
 body::before {
 	background:
-		radial-gradient(42rem 28rem at 12% 18%, rgba(56, 189, 248, 0.14), transparent 70%),
-		radial-gradient(34rem 24rem at 84% 12%, rgba(45, 212, 191, 0.1), transparent 72%),
-		radial-gradient(36rem 26rem at 54% 88%, rgba(14, 165, 233, 0.08), transparent 74%);
-	filter: blur(10px);
-	animation: ambient-shift 20s ease-in-out infinite alternate;
+		radial-gradient(38rem 24rem at 20% 16%, rgba(56, 189, 248, 0.09), transparent 74%),
+		radial-gradient(38rem 24rem at 80% 16%, rgba(56, 189, 248, 0.09), transparent 74%),
+		radial-gradient(34rem 24rem at 50% 86%, rgba(14, 165, 233, 0.06), transparent 76%);
+	filter: blur(14px);
+	animation: ambient-shift 28s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
 }
 
 body::after {
@@ -56,7 +62,22 @@ body::after {
 		transform: translate3d(0, 0, 0) scale(1);
 	}
 	100% {
-		transform: translate3d(0, -10px, 0) scale(1.03);
+		transform: translate3d(0, -16px, 0) scale(1.05);
+	}
+}
+
+@keyframes glow-drift {
+	0% {
+		transform: translate3d(0, 0, 0);
+		opacity: 0.9;
+	}
+	50% {
+		transform: translate3d(0, 1%, 0);
+		opacity: 1;
+	}
+	100% {
+		transform: translate3d(0, -1%, 0);
+		opacity: 0.92;
 	}
 }
 
@@ -73,7 +94,7 @@ body::after {
 
 .fade-in {
 	opacity: 0;
-	animation: page-fade-in 620ms ease-out forwards;
+	animation: page-fade-in var(--motion-base) var(--ease-standard) forwards;
 	animation-delay: var(--fade-delay, 0ms);
 }
 
@@ -105,21 +126,21 @@ body::after {
 .nav-link {
 	position: relative;
 	color: #cbd5e1;
-	transition: color 180ms ease;
+	transition: color var(--motion-fast) ease;
 }
 
 .nav-link::after {
 	content: '';
 	position: absolute;
 	left: 0;
-	bottom: -0.35rem;
+	bottom: -0.22rem;
 	width: 100%;
 	height: 2px;
 	border-radius: 9999px;
 	background: linear-gradient(90deg, #22d3ee, #67e8f9);
 	transform: scaleX(0);
 	transform-origin: left;
-	transition: transform 220ms ease;
+	transition: transform var(--motion-fast) ease;
 }
 
 .nav-link:hover {
@@ -133,8 +154,8 @@ body::after {
 .mobile-nav-link {
 	display: block;
 	border-radius: 0.65rem;
-	padding: 0.45rem 0.6rem;
-	transition: background-color 180ms ease, color 180ms ease;
+	padding: 0.55rem 0.75rem;
+	transition: background-color var(--motion-fast) ease, color var(--motion-fast) ease;
 }
 
 .mobile-nav-link:hover {
@@ -142,8 +163,47 @@ body::after {
 	color: #f8fafc;
 }
 
+.interactive-cut-bg {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.interactive-cut-bg::before,
+.interactive-cut-bg::after {
+	content: '';
+	position: absolute;
+	pointer-events: none;
+}
+
+.interactive-cut-bg::before {
+	inset: 0;
+	background:
+		linear-gradient(to bottom, rgba(15, 23, 42, 0.28), rgba(15, 23, 42, 0) 34%),
+		radial-gradient(24rem 16rem at 20% 0%, rgba(15, 23, 42, 0.16), transparent 74%),
+		radial-gradient(24rem 16rem at 80% 0%, rgba(15, 23, 42, 0.16), transparent 74%);
+	filter: blur(0.5px);
+	opacity: 0.24;
+	animation: glow-drift 26s ease-in-out infinite alternate;
+}
+
+.interactive-cut-bg::after {
+	inset: 0;
+	background:
+		radial-gradient(17rem 17rem at 28% 26%, rgba(56, 189, 248, 0.075), rgba(56, 189, 248, 0) 72%),
+		radial-gradient(17rem 17rem at 72% 26%, rgba(56, 189, 248, 0.075), rgba(56, 189, 248, 0) 72%),
+		radial-gradient(32rem 24rem at 50% 42%, rgba(2, 6, 23, 0), rgba(2, 6, 23, 0.18) 82%);
+	animation: glow-drift 22s ease-in-out infinite alternate-reverse;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	body::before {
+		animation: none;
+	}
+
+	.interactive-cut-bg::before,
+	.interactive-cut-bg::after {
 		animation: none;
 	}
 

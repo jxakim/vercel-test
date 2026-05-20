@@ -5,9 +5,11 @@
 </script>
 
 <main
-	class="min-h-screen text-slate-100"
+	class="relative min-h-screen overflow-hidden text-slate-100"
 >
-	<nav class="fade-in px-4 pt-6 sm:px-6" style="--fade-delay: 70ms">
+	<div class="interactive-cut-bg" aria-hidden="true"></div>
+
+	<nav class="fade-in relative z-10 px-4 pt-6 sm:px-6" style="--fade-delay: 60ms">
 		<div class="mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center px-4 py-3 sm:px-6">
 			<a
 				href="/"
@@ -40,7 +42,7 @@
 				</svg>
 			</button>
 
-			<ul class="col-start-2 hidden h-10 items-center gap-7 text-sm font-semibold uppercase tracking-[0.12em] text-slate-300 sm:flex lg:gap-10">
+			<ul class="col-start-2 hidden h-10 items-center gap-7 text-sm font-medium text-slate-300 sm:flex lg:gap-10">
 				<li><a href="/" class="nav-link inline-flex h-10 items-center">Home</a></li>
 				<li><a href="/" class="nav-link inline-flex h-10 items-center">Portfolio</a></li>
 				<li><a href="/" class="nav-link inline-flex h-10 items-center">About</a></li>
@@ -49,7 +51,7 @@
 		</div>
 
 		{#if mobileMenuOpen}
-			<ul id="mobile-nav" class="fade-in mr-4 ml-auto mt-3 flex w-fit flex-col items-end gap-2 p-3 text-right text-sm font-semibold uppercase tracking-[0.08em] text-slate-300 sm:hidden" style="--fade-delay: 120ms">
+			<ul id="mobile-nav" class="fade-in mr-4 ml-auto mt-3 flex w-fit min-w-40 flex-col items-end gap-1 p-2 text-right text-sm font-medium text-slate-300 sm:hidden" style="--fade-delay: 100ms">
 				<li><a href="/" class="mobile-nav-link">Home</a></li>
 				<li><a href="/" class="mobile-nav-link">Portfolio</a></li>
 				<li><a href="/" class="mobile-nav-link">About</a></li>
@@ -58,11 +60,11 @@
 		{/if}
 	</nav>
 
-	<section class="fade-in mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-6 py-10 text-center sm:gap-12 sm:px-10 md:py-20" style="--fade-delay: 230ms">
-		<p class="fade-in text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80" style="--fade-delay: 250ms">Web solutions</p>
-		<h1 class="fade-in text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-6xl" style="--fade-delay: 280ms">
+	<section class="fade-in relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-6 py-16 text-center sm:gap-10 sm:px-10 md:py-24" style="--fade-delay: 180ms">
+		<p class="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80">Web solutions</p>
+		<h1 class="max-w-4xl text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-6xl">
 			Welcome to <span class="kontrast-word">Kontrast</span>
 		</h1>
-		<p class="fade-in max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl" style="--fade-delay: 330ms">Kontrast is under construction. Please check back later.</p>
+		<p class="max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl">Kontrast is under construction. Please check back later.</p>
 	</section>
 </main>
