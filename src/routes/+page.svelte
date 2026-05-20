@@ -8,11 +8,12 @@
 <main
 	class="min-h-screen bg-slate-900 text-slate-100"
 >
-	<nav class="pt-10">
+	<nav class="fade-in pt-10" style="--fade-delay: 40ms">
 		<div class="flex w-full items-center px-6">
 			<a
 				href="/"
-				class="inline-flex transition duration-200 hover:-translate-y-0.5 hover:scale-[1.02]"
+				class="fade-in inline-flex transition duration-200 hover:-translate-y-0.5 hover:scale-[1.02]"
+				style="--fade-delay: 110ms"
 			>
 				<img src={longLogo} alt="Kontrast Web Logo" class="w-32 sm:hidden" />
 				<img src={logo} alt="Kontrast Web Logo" class="hidden w-16 sm:block" />
@@ -20,7 +21,8 @@
 
 			<button
 				type="button"
-				class="ml-auto inline-flex items-center justify-center rounded-md p-2 text-slate-300 transition hover:bg-slate-800 hover:text-white sm:hidden"
+				class="fade-in ml-auto inline-flex items-center justify-center rounded-md p-2 text-slate-300 transition hover:bg-slate-800 hover:text-white sm:hidden"
+				style="--fade-delay: 140ms"
 				onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
 				aria-expanded={mobileMenuOpen}
 				aria-controls="mobile-nav"
@@ -35,7 +37,7 @@
 				</svg>
 			</button>
 
-			<ul class="ml-6 hidden w-fit items-center gap-5 text-md font-medium text-slate-300 sm:flex sm:gap-10 sm:text-md">
+			<ul class="fade-in ml-6 hidden w-fit items-center gap-5 text-md font-medium text-slate-300 sm:flex sm:gap-10 sm:text-md" style="--fade-delay: 170ms">
 				<li><a href="/" class="transition hover:text-white">Home</a></li>
 				<li><a href="/" class="transition hover:text-white">Portfolio</a></li>
 				<li><a href="/" class="transition hover:text-white">About</a></li>
@@ -44,7 +46,7 @@
 		</div>
 
 		{#if mobileMenuOpen}
-			<ul id="mobile-nav" class="mt-4 flex flex-col gap-3 px-6 text-base font-medium text-slate-300 sm:hidden">
+			<ul id="mobile-nav" class="fade-in mt-4 flex flex-col gap-3 px-6 text-base font-medium text-slate-300 sm:hidden" style="--fade-delay: 200ms">
 				<li><a href="/" class="block rounded-md px-2 py-1 transition hover:bg-slate-800 hover:text-white">Home</a></li>
 				<li><a href="/" class="block rounded-md px-2 py-1 transition hover:bg-slate-800 hover:text-white">Portfolio</a></li>
 				<li><a href="/" class="block rounded-md px-2 py-1 transition hover:bg-slate-800 hover:text-white">About</a></li>
@@ -53,10 +55,10 @@
 		{/if}
 	</nav>
 
-	<section class="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-6 py-20 text-center sm:gap-10 sm:px-20">
-		<h1 class="text-2xl font-bold sm:text-2xl md:text-4xl">
+	<section class="fade-in mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-6 py-20 text-center sm:gap-10 sm:px-20" style="--fade-delay: 230ms">
+		<h1 class="fade-in text-2xl font-bold sm:text-2xl md:text-4xl" style="--fade-delay: 280ms">
 			Welcome to <span class="kontrast-word">Kontrast</span>
 		</h1>
-        <p class="text-lg text-slate-400 sm:text-xl md:text-xl">Kontrast is under construction. Please check back later.</p>
+		<p class="fade-in text-lg text-slate-400 sm:text-xl md:text-xl" style="--fade-delay: 330ms">Kontrast is under construction. Please check back later.</p>
 	</section>
 </main>
