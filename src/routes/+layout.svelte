@@ -7,7 +7,7 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<title>Kontrast Web</title>
+	<title>Kontrast</title>
 </svelte:head>
 
 {@render children()}

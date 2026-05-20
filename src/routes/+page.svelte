@@ -54,7 +54,9 @@
 	</nav>
 
 	<section class="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-6 py-20 text-center sm:gap-10 sm:px-20">
-        <h1 class="text-2xl font-bold sm:text-2xl md:text-4xl">Welcome to Kontrast Web</h1>
-        <p class="text-lg text-slate-400 sm:text-xl md:text-xl">Kontrast web is under construction. Please check back later.</p>
+		<h1 class="text-2xl font-bold sm:text-2xl md:text-4xl">
+			Welcome to <span class="kontrast-word">Kontrast</span>
+		</h1>
+        <p class="text-lg text-slate-400 sm:text-xl md:text-xl">Kontrast is under construction. Please check back later.</p>
 	</section>
 </main>
