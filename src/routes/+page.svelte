@@ -78,7 +78,7 @@
 	<section class="fade-in relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-6 py-16 text-center sm:gap-10 sm:px-10 md:py-24" style="--fade-delay: 180ms">
 		<p class="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80">Web solutions</p>
 		<h1 class="max-w-4xl text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-6xl">
-			Welcome to <span class="kontrast-word">Kontrast</span>
+			Welcome to <span class="kontrast-word">test</span>
 		</h1>
 		<p class="max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl">Kontrast is under construction. Please check back later.</p>
 	</section>
