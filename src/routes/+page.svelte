@@ -28,7 +28,7 @@
 			overscan={gridPreset[gridDensity].overscan}
 			tileColor="rgba(34, 211, 238, 0.24)"
 		/>
-		<Lights class="lights-layer" direction="bottom" />
+		<Lights class="lights-layer" direction="top" />
 		<div class="boxes-fade"></div>
 	</div>
 
