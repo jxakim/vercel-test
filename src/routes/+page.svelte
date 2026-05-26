@@ -1,6 +1,7 @@
 <script lang="ts">
 	import longLogo from '$lib/assets/Kontrast-long.png';
 	import BackgroundBoxes from '$lib/BackgroundBoxes.svelte';
+	import Lights from '$lib/Lights.svelte';
 	import Particles from '$lib/Particles.svelte';
 
 	let mobileMenuOpen = $state(false);
@@ -27,6 +28,7 @@
 			overscan={gridPreset[gridDensity].overscan}
 			tileColor="rgba(34, 211, 238, 0.24)"
 		/>
+		<Lights class="lights-layer" direction="bottom" />
 		<div class="boxes-fade"></div>
 	</div>
 

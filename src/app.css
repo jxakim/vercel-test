@@ -258,6 +258,14 @@ body::after {
 	animation: boxes-float 16s ease-in-out infinite;
 }
 
+.lights-layer {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	mix-blend-mode: screen;
+	opacity: 0.95;
+}
+
 .background-boxes__row {
 	display: flex;
 }
