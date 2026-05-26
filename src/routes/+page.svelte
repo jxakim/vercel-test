@@ -1,7 +1,6 @@
 <script lang="ts">
 	import longLogo from '$lib/assets/Kontrast-long.png';
-	import GridPattern from '$lib/GridPattern.svelte';
-	import Particles from '$lib/Particles.svelte';
+	import BackgroundBoxes from '$lib/BackgroundBoxes.svelte';
 
 	let mobileMenuOpen = $state(false);
 </script>
@@ -10,21 +9,9 @@
 	class="relative min-h-screen overflow-hidden text-slate-100"
 >
 	<div class="interactive-cut-bg" aria-hidden="true"></div>
-	<Particles className="particles-layer absolute inset-0 z-0" refresh={true} />
-	<div class="grid-pattern-shell" aria-hidden="true">
-		<GridPattern
-			squares={[
-				[4, 4],
-				[5, 1],
-				[8, 2],
-				[6, 6],
-				[10, 5],
-				[13, 3]
-			]}
-			class="grid-pattern-layer absolute inset-x-0 inset-y-[-30%] h-[200%] w-full skew-y-12"
-			fillColor="rgb(156 163 175 / 0.24)"
-		/>
-		<div class="grid-pattern-fade"></div>
+	<div class="boxes-shell" aria-hidden="true">
+		<BackgroundBoxes class="boxes-layer absolute inset-0 h-full w-full" rows={12} cols={24} tileColor="rgba(34, 211, 238, 0.24)" />
+		<div class="boxes-fade"></div>
 	</div>
 
 	<nav class="fade-in relative z-10 px-4 pt-6 sm:px-6" class:mobile-nav-open={mobileMenuOpen} style="--fade-delay: 60ms">
