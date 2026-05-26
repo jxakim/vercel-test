@@ -16,11 +16,8 @@
 	} as const;
 </script>
 
-<main
-	class="relative min-h-screen overflow-x-hidden bg-slate-950 text-slate-100"
->
-	<div class="interactive-cut-bg" aria-hidden="true"></div>
-	<Particles className="particles-layer absolute inset-0 z-0" refresh={true} />
+<main class="relative flex min-h-screen flex-col overflow-x-hidden bg-slate-950 text-slate-100">
+	<Particles className="particles-layer fixed inset-0 z-0" quantity={70} refresh={false} />
 	<div class="boxes-shell" aria-hidden="true">
 		<BackgroundBoxes
 			class="boxes-layer absolute inset-0 h-full w-full"
@@ -80,11 +77,32 @@
 		{/if}
 	</nav>
 
-	<section class="fade-in relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-3 py-10 text-center sm:gap-10 sm:px-6 md:px-10 md:py-20 lg:py-24" style="--fade-delay: 180ms">
-		<p class="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80">Web solutions</p>
-		<h1 class="max-w-4xl text-2xl font-black leading-tight tracking-tight sm:text-4xl md:text-6xl">
-		 Welcome to <span class="kontrast-word">Kontrast</span>
-		</h1>
-		<p class="max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base md:text-lg lg:text-xl">Kontrast is under construction. Please check back later.</p>
+	<section class="fade-in relative z-10 mx-auto flex w-full max-w-5xl min-h-[calc(100svh-6rem)] flex-col items-center justify-center gap-8 px-3 py-8 text-center sm:gap-10 sm:px-6 md:px-10 md:py-16 lg:py-24 xl:px-0" style="--fade-delay: 180ms">
+			<p class="text-xs sm:text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300/80">Web solutions</p>
+			<h1 class="max-w-3xl text-2xl font-black leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+			 Welcome to <span class="kontrast-word">Kontrast</span>
+			</h1>
+			<p class="max-w-xl text-xs leading-relaxed text-slate-300 sm:text-base md:text-lg lg:text-xl xl:text-2xl">Kontrast is under construction. Please check back later.</p>
+			<div class="flex flex-col items-center gap-3 sm:flex-row sm:gap-6 mt-6 w-full max-w-md mx-auto">
+			</div>
+
+			<a
+				href="#next-page"
+				class="group absolute bottom-6 left-1/2 inline-flex -translate-x-1/2 flex-col items-center gap-2 text-slate-300 transition hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+				aria-label="Scroll to next section"
+			>
+				<svg class="scroll-arrow h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<path d="M6 9l6 6 6-6" />
+				</svg>
+			</a>
+	</section>
+
+	<section id="next-page" class="relative z-10 mx-auto flex min-h-screen w-full max-w-5xl flex-col items-center justify-center gap-6 px-4 py-16 text-center sm:px-6 md:px-10">
+		<p class="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80 sm:text-sm">Next page</p>
+		<h2 class="max-w-3xl text-2xl font-black leading-tight tracking-tight text-slate-100 sm:text-4xl md:text-5xl">You made it to the next section</h2>
+		<p class="max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base md:text-lg">This section acts like the next page. Keep scrolling or add more content blocks here.</p>
+		<a href="/new-page" class="mt-2 inline-flex items-center rounded-lg border border-cyan-300/40 bg-cyan-400/10 px-5 py-2.5 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-300/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">Open dedicated new page</a>
 	</section>
 </main>
+
+

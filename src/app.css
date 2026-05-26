@@ -11,6 +11,10 @@ body {
 	min-height: 100%;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	margin: 0;
 	background-color: #0f172a;
@@ -64,6 +68,22 @@ body::after {
 	opacity: 0;
 	animation: page-fade-in var(--motion-base) var(--ease-standard) forwards;
 	animation-delay: var(--fade-delay, 0ms);
+}
+
+@keyframes scroll-arrow-drift {
+	0%,
+	100% {
+		transform: translateY(0);
+		opacity: 0.75;
+	}
+	50% {
+		transform: translateY(3px);
+		opacity: 1;
+	}
+}
+
+.scroll-arrow {
+	animation: scroll-arrow-drift 2.4s ease-in-out infinite;
 }
 
 @keyframes kontrast-wave {
@@ -239,7 +259,7 @@ body::after {
 }
 
 .boxes-shell {
-	position: absolute;
+	position: fixed;
 	inset: 0;
 	z-index: 0;
 	pointer-events: none;
@@ -277,8 +297,6 @@ body::after {
 	border-top: 1px solid rgba(148, 163, 184, 0.14);
 	background-color: rgba(15, 23, 42, 0.06);
 	transition: background-color 160ms ease;
-	animation: tile-breathe 9s ease-in-out infinite;
-	animation-delay: calc((var(--row-index) + var(--col-index)) * 45ms);
 }
 
 .background-boxes__row:last-child .background-boxes__tile {
@@ -327,16 +345,6 @@ body::after {
 		radial-gradient(74% 50% at 50% 44%, rgba(15, 23, 42, 0), rgba(15, 23, 42, 0.46) 100%);
 }
 
-@keyframes tile-breathe {
-	0%,
-	100% {
-		background-color: rgba(15, 23, 42, 0.04);
-	}
-	50% {
-		background-color: rgba(51, 65, 85, 0.14);
-	}
-}
-
 @keyframes boxes-float {
 	0%,
 	100% {
@@ -361,6 +369,10 @@ body::after {
 
 	.fade-in {
 		opacity: 1;
+		animation: none;
+	}
+
+	.scroll-arrow {
 		animation: none;
 	}
 

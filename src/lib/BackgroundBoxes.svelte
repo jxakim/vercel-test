@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 
 	let {
 		rows = 11,
@@ -20,8 +21,32 @@
 	}>();
 
 	let containerEl: HTMLDivElement;
-	let resolvedRows = $state(11);
-	let resolvedCols = $state(22);
+
+	function getInitialGrid() {
+		if (!autoFit) {
+			return {
+				rows: rows,
+				cols: cols
+			};
+		}
+
+		if (!browser) {
+			return {
+				rows: 11,
+				cols: 22
+			};
+		}
+
+		const safeCellSize = Math.max(24, cellSize);
+		return {
+			cols: Math.max(8, Math.ceil(window.innerWidth / safeCellSize) + overscan),
+			rows: Math.max(6, Math.ceil(window.innerHeight / safeCellSize) + overscan)
+		};
+	}
+
+	const initialGrid = getInitialGrid();
+	let resolvedRows = $state(initialGrid.rows);
+	let resolvedCols = $state(initialGrid.cols);
 
 	$effect(() => {
 		if (autoFit) return;
@@ -44,6 +69,8 @@
 	onMount(() => {
 		if (!containerEl) return;
 
+		updateGrid(window.innerWidth, window.innerHeight);
+
 		const rect = containerEl.getBoundingClientRect();
 		updateGrid(rect.width, rect.height);
 
@@ -55,8 +82,15 @@
 
 		observer.observe(containerEl);
 
+		const onWindowResize = () => {
+			updateGrid(window.innerWidth, window.innerHeight);
+		};
+
+		window.addEventListener('resize', onWindowResize);
+
 		return () => {
 			observer.disconnect();
+			window.removeEventListener('resize', onWindowResize);
 		};
 	});
 

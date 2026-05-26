@@ -226,12 +226,19 @@
 		resizeCanvas();
 		startParticles();
 
+		const resizeObserver = new ResizeObserver(() => {
+			resizeCanvas();
+			startParticles();
+		});
+		resizeObserver.observe(canvasContainerRef);
+
 		window.addEventListener('resize', resizeCanvas);
 		window.addEventListener('mousemove', onMouseMove);
 		media.addEventListener('change', motionListener);
 
 		return () => {
 			cancelAnimationFrame(frameId);
+			resizeObserver.disconnect();
 			window.removeEventListener('resize', resizeCanvas);
 			window.removeEventListener('mousemove', onMouseMove);
 			media.removeEventListener('change', motionListener);
