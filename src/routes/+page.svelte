@@ -20,6 +20,8 @@
 	let nextSection: HTMLElement | null = null;
 	let scrollLocked = false;
 	let touchStartY = 0;
+	let touchStartX = 0;
+	let touchStartTime = 0;
 
 	function inFirstPageRange() {
 		if (!firstPageShell) return false;
@@ -68,7 +70,9 @@
 	function onTouchStart(event: TouchEvent) {
 		const touch = event.touches[0];
 		if (!touch) return;
+		touchStartX = touch.clientX;
 		touchStartY = touch.clientY;
+		touchStartTime = performance.now();
 	}
 
 	function onTouchEnd(event: TouchEvent) {
@@ -78,12 +82,18 @@
 		if (!touch) return;
 
 		const deltaY = touchStartY - touch.clientY;
-		if (deltaY > 36 && inFirstPageRange()) {
+		const deltaX = Math.abs(touchStartX - touch.clientX);
+		const duration = performance.now() - touchStartTime;
+		const isIntentionalSwipe = Math.abs(deltaY) > 64 && deltaX < 36 && duration < 460;
+
+		if (!isIntentionalSwipe) return;
+
+		if (deltaY > 0 && inFirstPageRange()) {
 			autoScrollDown();
 			return;
 		}
 
-		if (deltaY < -36 && inSecondPageRange()) {
+		if (deltaY < 0 && inSecondPageRange()) {
 			autoScrollUp();
 		}
 	}
