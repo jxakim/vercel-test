@@ -17,7 +17,7 @@
 </script>
 
 <main
-	class="relative min-h-screen overflow-hidden text-slate-100"
+	class="relative min-h-screen overflow-x-hidden bg-slate-950 text-slate-100"
 >
 	<div class="interactive-cut-bg" aria-hidden="true"></div>
 	<Particles className="particles-layer absolute inset-0 z-0" refresh={true} />
@@ -32,7 +32,7 @@
 		<div class="boxes-fade"></div>
 	</div>
 
-	<nav class="fade-in relative z-10 px-4 pt-6 sm:px-6" class:mobile-nav-open={mobileMenuOpen} style="--fade-delay: 60ms">
+	<nav class="fade-in relative z-10 px-3 pt-4 sm:px-6 md:px-10" class:mobile-nav-open={mobileMenuOpen} style="--fade-delay: 60ms">
 		<div class="mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center px-4 py-3 sm:px-6">
 			<a
 				href="/"
@@ -80,11 +80,11 @@
 		{/if}
 	</nav>
 
-	<section class="fade-in relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-6 py-16 text-center sm:gap-10 sm:px-10 md:py-24" style="--fade-delay: 180ms">
+	<section class="fade-in relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-3 py-10 text-center sm:gap-10 sm:px-6 md:px-10 md:py-20 lg:py-24" style="--fade-delay: 180ms">
 		<p class="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80">Web solutions</p>
-		<h1 class="max-w-4xl text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-6xl">
-			Welcome to <span class="kontrast-word">Kontrast</span>
+		<h1 class="max-w-4xl text-2xl font-black leading-tight tracking-tight sm:text-4xl md:text-6xl">
+		 Welcome to <span class="kontrast-word">Kontrast</span>
 		</h1>
-		<p class="max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl">Kontrast is under construction. Please check back later.</p>
+		<p class="max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base md:text-lg lg:text-xl">Kontrast is under construction. Please check back later.</p>
 	</section>
 </main>
