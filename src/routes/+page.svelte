@@ -1,16 +1,32 @@
 <script lang="ts">
 	import longLogo from '$lib/assets/Kontrast-long.png';
 	import BackgroundBoxes from '$lib/BackgroundBoxes.svelte';
+	import Particles from '$lib/Particles.svelte';
 
 	let mobileMenuOpen = $state(false);
+
+	type GridDensity = 'tight' | 'balanced' | 'airy';
+	const gridDensity: GridDensity = 'balanced';
+
+	const gridPreset = {
+		tight: { cellSize: 34, overscan: 4 },
+		balanced: { cellSize: 44, overscan: 3 },
+		airy: { cellSize: 56, overscan: 2 }
+	} as const;
 </script>
 
 <main
 	class="relative min-h-screen overflow-hidden text-slate-100"
 >
 	<div class="interactive-cut-bg" aria-hidden="true"></div>
+	<Particles className="particles-layer absolute inset-0 z-0" refresh={true} />
 	<div class="boxes-shell" aria-hidden="true">
-		<BackgroundBoxes class="boxes-layer absolute inset-0 h-full w-full" rows={12} cols={24} tileColor="rgba(34, 211, 238, 0.24)" />
+		<BackgroundBoxes
+			class="boxes-layer absolute inset-0 h-full w-full"
+			cellSize={gridPreset[gridDensity].cellSize}
+			overscan={gridPreset[gridDensity].overscan}
+			tileColor="rgba(34, 211, 238, 0.24)"
+		/>
 		<div class="boxes-fade"></div>
 	</div>
 
