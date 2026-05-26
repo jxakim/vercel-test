@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import longLogo from '$lib/assets/Kontrast-long.png';
 	import BackgroundBoxes from '$lib/BackgroundBoxes.svelte';
 	import Lights from '$lib/Lights.svelte';
@@ -14,22 +15,107 @@
 		balanced: { cellSize: 44, overscan: 3 },
 		airy: { cellSize: 56, overscan: 2 }
 	} as const;
+
+	let firstPageShell: HTMLElement | null = null;
+	let nextSection: HTMLElement | null = null;
+	let scrollLocked = false;
+	let touchStartY = 0;
+
+	function inFirstPageRange() {
+		if (!firstPageShell) return false;
+		const threshold = firstPageShell.offsetTop + firstPageShell.offsetHeight - 140;
+		return window.scrollY < threshold;
+	}
+
+	function inSecondPageRange() {
+		if (!nextSection) return false;
+		return window.scrollY >= nextSection.offsetTop - 140;
+	}
+
+	function autoScrollDown() {
+		if (!nextSection || scrollLocked) return;
+		scrollLocked = true;
+		nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		window.setTimeout(() => {
+			scrollLocked = false;
+		}, 700);
+	}
+
+	function autoScrollUp() {
+		if (!firstPageShell || scrollLocked) return;
+		scrollLocked = true;
+		firstPageShell.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		window.setTimeout(() => {
+			scrollLocked = false;
+		}, 700);
+	}
+
+	function onWheel(event: WheelEvent) {
+		if (mobileMenuOpen || scrollLocked) return;
+
+		if (event.deltaY > 12 && inFirstPageRange()) {
+			event.preventDefault();
+			autoScrollDown();
+			return;
+		}
+
+		if (event.deltaY < -12 && inSecondPageRange()) {
+			event.preventDefault();
+			autoScrollUp();
+		}
+	}
+
+	function onTouchStart(event: TouchEvent) {
+		const touch = event.touches[0];
+		if (!touch) return;
+		touchStartY = touch.clientY;
+	}
+
+	function onTouchEnd(event: TouchEvent) {
+		if (mobileMenuOpen || scrollLocked) return;
+
+		const touch = event.changedTouches[0];
+		if (!touch) return;
+
+		const deltaY = touchStartY - touch.clientY;
+		if (deltaY > 36 && inFirstPageRange()) {
+			autoScrollDown();
+			return;
+		}
+
+		if (deltaY < -36 && inSecondPageRange()) {
+			autoScrollUp();
+		}
+	}
+
+	onMount(() => {
+		window.addEventListener('wheel', onWheel, { passive: false });
+		window.addEventListener('touchstart', onTouchStart, { passive: true });
+		window.addEventListener('touchend', onTouchEnd, { passive: true });
+
+		return () => {
+			window.removeEventListener('wheel', onWheel);
+			window.removeEventListener('touchstart', onTouchStart);
+			window.removeEventListener('touchend', onTouchEnd);
+		};
+	});
 </script>
 
 <main class="relative flex min-h-screen flex-col overflow-x-hidden bg-slate-950 text-slate-100">
 	<Particles className="particles-layer fixed inset-0 z-0" quantity={70} refresh={false} />
-	<div class="boxes-shell" aria-hidden="true">
-		<BackgroundBoxes
-			class="boxes-layer absolute inset-0 h-full w-full"
-			cellSize={gridPreset[gridDensity].cellSize}
-			overscan={gridPreset[gridDensity].overscan}
-			tileColor="rgba(34, 211, 238, 0.24)"
-		/>
-		<Lights class="lights-layer" direction="top" />
-		<div class="boxes-fade"></div>
-	</div>
+	<div bind:this={firstPageShell} class="first-page-shell relative z-10 min-h-screen">
+		<div class="boxes-shell" aria-hidden="true">
+			<BackgroundBoxes
+				class="boxes-layer absolute inset-0 h-full w-full"
+				cellSize={gridPreset[gridDensity].cellSize}
+				overscan={gridPreset[gridDensity].overscan}
+				tileColor="rgba(34, 211, 238, 0.24)"
+			/>
+			<Lights class="lights-layer" direction="top" />
+			<div class="boxes-fade"></div>
+		</div>
 
-	<nav class="fade-in relative z-10 px-3 pt-4 sm:px-6 md:px-10" class:mobile-nav-open={mobileMenuOpen} style="--fade-delay: 60ms">
+		<nav class="fade-in relative z-10 px-3 pt-4 sm:px-6 md:px-10" class:mobile-nav-open={mobileMenuOpen} style="--fade-delay: 60ms">
 		<div class="mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center px-4 py-3 sm:px-6">
 			<a
 				href="/"
@@ -75,9 +161,9 @@
 				<li><a href="/" class="mobile-nav-link">Contact</a></li>
 			</ul>
 		{/if}
-	</nav>
+		</nav>
 
-	<section class="fade-in relative z-10 mx-auto flex w-full max-w-5xl min-h-[calc(100svh-6rem)] flex-col items-center justify-center gap-8 px-3 py-8 text-center sm:gap-10 sm:px-6 md:px-10 md:py-16 lg:py-24 xl:px-0" style="--fade-delay: 180ms">
+		<section class="fade-in relative z-10 mx-auto flex w-full max-w-5xl min-h-[calc(100svh-6rem)] flex-col items-center justify-center gap-8 px-3 py-8 text-center sm:gap-10 sm:px-6 md:px-10 md:py-16 lg:py-24 xl:px-0" style="--fade-delay: 180ms">
 			<p class="text-xs sm:text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300/80">Web solutions</p>
 			<h1 class="max-w-3xl text-2xl font-black leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
 			 Welcome to <span class="kontrast-word">Kontrast</span>
@@ -95,9 +181,10 @@
 					<path d="M6 9l6 6 6-6" />
 				</svg>
 			</a>
-	</section>
+		</section>
+	</div>
 
-	<section id="next-page" class="relative z-10 mx-auto flex min-h-screen w-full max-w-5xl flex-col items-center justify-center gap-6 px-4 py-16 text-center sm:px-6 md:px-10">
+	<section bind:this={nextSection} id="next-page" class="relative z-10 mx-auto flex min-h-screen w-full max-w-5xl flex-col items-center justify-center gap-6 px-4 py-16 text-center sm:px-6 md:px-10">
 		<p class="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/80 sm:text-sm">Next page</p>
 		<h2 class="max-w-3xl text-2xl font-black leading-tight tracking-tight text-slate-100 sm:text-4xl md:text-5xl">You made it to the next section</h2>
 		<p class="max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base md:text-lg">This section acts like the next page. Keep scrolling or add more content blocks here.</p>
